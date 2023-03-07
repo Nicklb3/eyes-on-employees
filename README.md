@@ -1,1 +1,1 @@
-<h1 align="center">eyes-on-employees</h1>
+<h1 align="center">Eyes-on-Employees</h1>
