@@ -1,0 +1,22 @@
+{
+  "name": "eyes-on-employees",
+  "version": "1.0.0",
+  "description": "an eployess tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nicklb3/eyes-on-employees.git"
+  },
+  "author": "Nicholas L Bonner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nicklb3/eyes-on-employees/issues"
+  },
+  "homepage": "https://github.com/Nicklb3/eyes-on-employees#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
