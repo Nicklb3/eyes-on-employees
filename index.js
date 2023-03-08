@@ -75,3 +75,79 @@ function viewAllRoles () {
         askPromptQuestions();
     });
 }
+
+function viewAllEmployees() {
+    Queries.viewAllEmployees()
+    .then(([rows]) => {
+        let employees = rows;
+        console.table(employees);
+    })
+    .then(() => askPromptQuestions());
+}
+
+function addDepartment () {
+    inquirer
+    .prompt([
+        {
+            name: "departmentName",
+            message: "What is the name of your department?",
+            type: "input",
+        },
+    ])
+    .then((answers) => {
+        Queries.addDepartment(answers.departmentName)
+        .then((response) => {
+            console.log(`Added ${answers.departmentName} to the database`);
+            askPromptQuestions();
+        })
+        .catch((error) => {
+            console.log(error);
+            askPromptQuestions();
+        });
+    });
+}
+
+function addRole () {
+    Queries.viewAllDepartments().then(([rows]) => {
+        let department = rows;
+        const departmentChoices = department.map(({ id, name }) => {
+            return {
+                name: `${name}`,
+                value: id,
+            }
+        });
+
+        inquirer
+        .prompt([
+            {
+                name: "title",
+                message: "What is your role?",
+                type: "input",
+            },
+            {
+                name: "salary",
+                message: "What is the salary of the role?",
+                type: "input",
+            },
+            {
+                type: "list",
+                name: "department_id",
+                message: "What department does the role belong to?",
+                choices: "departmentChoices",
+            },
+        ])
+
+        .then((answers) => {
+            Queries,addRole(answers.title, answers.salary, answers.department_id)
+            .then((response) => {
+                console.log(`Added Role to the database`);
+                askPromptQuestions();
+            })
+            .catch((error) => {
+                console.log(error);
+                askPromptQuestions();
+            });
+        });
+    })
+};
+
