@@ -151,3 +151,100 @@ function addRole () {
     })
 };
 
+function addEmployee () {
+    Queries.viewAllRoles().then(([rows]) => {
+        let role = rows;
+        const roleChoices = role.map(({id, title}) => {
+            return {
+                name: `${title}`,
+                value: id,
+            }
+        })
+        Queries.viewManager().then(([rows]) => {
+            let manager = rows;
+            const managerChoices = manager.map(({ id, first_name, last_name}) => {
+                return {
+                    name: `${first_name} ${last_name}`,
+                    value: id,
+                }
+            });
+            const employee = [
+                {
+                    name: "firstName",
+                    message: "What is the employee's first name?",
+                    type: "input",
+                },
+                {
+                    name: "lastName",
+                    message: "What is the employee's last name?",
+                    type: "input",
+                },
+                {
+                    name: "role",
+                    message: "What is the employee's role?",
+                    type: "list",
+                    choices : roleChoices
+                },
+                {
+                    name: "manager",
+                    message: "What is the employee's manager?",
+                    type: "list",
+                    choices : managerChoices
+                },
+            ];
+            inquirer.prompt(employee).then((answers) => {
+                Queries.addEmployee(answers.firstName, answers.lastName, answers.role, answers.manager)
+                .then((response) => {
+                    console.log("Added Employee to the database");
+                    askPromptQuestions();
+                });
+            })
+        })
+    })
+}
+
+function updateEmployeeRole() {
+    Queries.viewAllEmployees().then(([employees]) => {
+        const employeeArray = employees.map(({ id, first_name, last_name}) => {
+            return {
+                name: `${first_name} ${last_name}`,
+                value: id,
+            };
+        });
+        inquirer
+        .prompt([
+            {
+                type: "list",
+                name: "employeeId",
+                message: "Which employee's role would you like to update?",
+                choices: employeeArray,
+            },
+        ])
+        .then(({ employeeId }) => {
+            Queries.viewAllRoles().then(({roles}) => {
+                const roleArray = roles.map(({ id, title }) => {
+                    return {
+                        name: title,
+                        value: id,
+                    };
+                });
+                inquirer
+                .prompt([
+                    {
+                        type: "list",
+                        name: "roleId",
+                        message: "Which role would you like to update the employee to?",
+                        choices: roleArray,
+                    },
+                ])
+                .then(({ roleId }) => {
+                    Queries.updateEmployeeRole(employeeId, roleId)
+                    .then(() => console.log("Updated Employees Role"))
+                    .then(() => askPromptQuestions());
+                });
+            });
+        });
+    });
+}
+
+init();
