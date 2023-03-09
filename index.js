@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const consoleTable = require("console.table");
 const Queries = require("./Queries");
 
+// array of questions
 const options = [
     {
         type: "list",
