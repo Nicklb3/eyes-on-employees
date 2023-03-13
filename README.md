@@ -49,5 +49,5 @@ MIT License
 
 Reach me at the links below with additional questions:
 
-Github: https://github.com/Nicklb3/eyes-on-employees.git
-Email: NicholasLbonner@yahoo.com.com
+* Github: https://github.com/Nicklb3/eyes-on-employees.git
+* Email: NicholasLbonner@yahoo.com.com
