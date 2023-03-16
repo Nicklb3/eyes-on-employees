@@ -248,4 +248,4 @@ function updateEmployeeRole() {
     });
 }
 
-init();
+askPromptQuestions();
