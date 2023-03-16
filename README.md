@@ -12,6 +12,8 @@ To add a department, users enter the department name and the information is adde
 
 ## Screenrecording
 
+* https://drive.google.com/file/d/17gFdq7nvz2YG8pno7M_KErP92hEIqfSu/view?usp=sharing
+
 ---
 
 ## Table of Contents
@@ -50,4 +52,4 @@ MIT License
 Reach me at the links below with additional questions:
 
 * Github: https://github.com/Nicklb3/eyes-on-employees
-* Email: NicholasLbonner@yahoo.com.com
+* Email: NicholasLbonner@yahoo.com
